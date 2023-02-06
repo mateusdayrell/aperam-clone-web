@@ -13,6 +13,7 @@ import {
   LineChart, ResponsiveContainer, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import moment from 'moment/moment';
+import { AiOutlineDashboard } from 'react-icons/ai';
 
 import axios from '../../services/axios';
 import Navbar from '../../components/Navbar';
@@ -133,6 +134,10 @@ export default function Dashboard() {
     <>
       <Navbar />
       <div className="app-container">
+        <div className="flex justify-center gap-2 items-center mb-4">
+          <AiOutlineDashboard size={42} />
+          <h1 className="font-black text-3xl">Dashboard</h1>
+        </div>
         <div className="box-container">
           <div>
             <h1 className="text-3xl">Upload de arquivos</h1>
@@ -290,14 +295,14 @@ export default function Dashboard() {
               />
             </TableContainer>
           </div>
-          <Modal
+          {/* <Modal
             isOpen={showUpdate}
             onRequestClose={() => setShowUpdate(false)}
-            className="Modal overflow-y-hidden"
+            className="Modal"
             overlayClassName="Overlay"
             ariaHideApp={false}
           >
-            <div>
+            <div className="m-container">
               <h1>Editar nome do arquivo</h1>
               <label>Nome</label>
               <input type="text" onChange={(e) => setName(e.target.value)} value={name} />
@@ -306,7 +311,7 @@ export default function Dashboard() {
                 <button type="button" onClick={() => setShowUpdate(false)}>Não, cancelar.</button>
               </div>
             </div>
-          </Modal>
+          </Modal> */}
 
           <Modal
             isOpen={showUpdate}
@@ -315,13 +320,16 @@ export default function Dashboard() {
             overlayClassName="Overlay"
             ariaHideApp={false}
           >
-            <div>
-              <h1>Editar nome do arquivo</h1>
-              <label>Nome</label>
-              <input type="text" onChange={(e) => setName(e.target.value)} value={name} />
+            <div className="m-container">
+              <h1 className="title">Editar nome do arquivo</h1>
               <div>
-                <button type="button" onClick={handleUpdate}>Atualizar</button>
-                <button type="button" onClick={() => setShowUpdate(false)}>Não, cancelar.</button>
+                <label>Nome</label>
+                <input type="text" onChange={(e) => setName(e.target.value)} value={name} />
+              </div>
+
+              <div>
+                <button type="button" className="confirm-btn" onClick={handleUpdate}>Atualizar</button>
+                <button type="button" className="reject-btn" onClick={() => setShowUpdate(false)}>Cancelar</button>
               </div>
             </div>
           </Modal>
@@ -333,17 +341,17 @@ export default function Dashboard() {
             overlayClassName="Overlay"
             ariaHideApp={false}
           >
-            <div>
-              <h1>Voce tem certeza?</h1>
+            <div className="m-container">
+              <h1 className="title">Voce tem certeza?</h1>
               <p>
                 Deseja excluir a foto
                 {' '}
-                {name}
+                <span className="font-bold">{name}</span>
                 ?
               </p>
               <div>
-                <button type="button" onClick={handleDelete}>Sim, excluir.</button>
-                <button type="button" onClick={() => setShowDelete(false)}>Não, cancelar.</button>
+                <button type="button" className="confirm-btn" onClick={handleDelete}>Sim, excluir.</button>
+                <button type="button" className="reject-btn" onClick={() => setShowDelete(false)}>Não, cancelar.</button>
               </div>
             </div>
           </Modal>

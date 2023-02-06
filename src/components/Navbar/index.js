@@ -31,6 +31,12 @@ export default function Navbar() {
     history.push('/login');
   };
 
+  window.addEventListener('resize', () => {
+    if (window.screen.width > 767) {
+      setShowMenu(true);
+    }
+  });
+
   return (
     <>
       <div className="w-full fixed top-0 flex px-8 pt-8 pb-4 bg-gray-200 h-[15vh] z-10">
@@ -51,8 +57,8 @@ export default function Navbar() {
         </div>
       </div>
       <div className={showMenu ? 'list lg:w-44 lg:h-[85vh]' : 'sm:list sm:hidden'}>
-        <div className="flex flex-col justify-center h-full gap-5 items-center py-3
-          lg:gap-10 lg:justify-start lg:mt-8"
+        <div className="flex flex-col justify-center h-full gap-5 md:gap-0 items-center py-3
+          lg:gap-0 lg:justify-start lg:mt-0"
         >
           <div className="link-container">
             <Link className="link" to="/dashboard">

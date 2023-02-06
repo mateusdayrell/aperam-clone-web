@@ -31,3 +31,15 @@
 .Overlay {
   @apply fixed top-0 left-0 right-0 bottom-0 bg-black/60 flex justify-center backdrop-blur-sm
 }
+
+.m-container {
+  @apply h-52 flex flex-col items-center justify-around
+}
+
+.confirm-btn {
+  @apply mx-1 bg-green-500 text-gray-100 px-3 py-2 rounded-xl hover:bg-green-600
+}
+
+.reject-btn {
+  @apply mx-1 bg-gray-400 text-gray-100 px-3 py-2 rounded-xl hover:bg-gray-600
+}

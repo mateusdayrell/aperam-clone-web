@@ -6,6 +6,7 @@ import { get } from 'lodash';
 import bcrypt from 'bcryptjs-react';
 import Modal from 'react-modal';
 import { BsTrash } from 'react-icons/bs';
+import { AiOutlineUser } from 'react-icons/ai';
 
 import Navbar from '../../components/Navbar';
 import history from '../../services/history';
@@ -129,6 +130,10 @@ export default function MyProfile() {
     <>
       <Navbar />
       <div className="app-container">
+        <div className="flex justify-center gap-2 items-center mb-4">
+          <AiOutlineUser size={42} />
+          <h1 className="font-black text-3xl">Meu perfil</h1>
+        </div>
         <div className="box-container">
           <div className="flex flex-col">
             <h1 className="title">Meus dados</h1>
@@ -231,12 +236,12 @@ export default function MyProfile() {
         overlayClassName="Overlay"
         ariaHideApp={false}
       >
-        <div className="m-container h-52 flex flex-col items-center justify-around">
+        <div className="m-container">
           <h1 className="m-title title">Voce tem certeza?</h1>
           <p className="m-text">Deseja excluir a sua conta?</p>
           <div className="text-center">
-            <button type="button" className="confirm-btn mx-1 bg-cyan-400 text-gray-100 px-3 py-2 rounded-xl hover:bg-cyan-600" onClick={handleDelete}>Sim, excluir.</button>
-            <button type="button" className="reject-btn mx-1 bg-gray-400 text-gray-100 px-3 py-2 rounded-xl hover:bg-gray-600" onClick={() => setShowModal(false)}>Não, cancelar.</button>
+            <button type="button" className="confirm-btn" onClick={handleDelete}>Sim, excluir.</button>
+            <button type="button" className="reject-btn" onClick={() => setShowModal(false)}>Não, cancelar.</button>
           </div>
         </div>
       </Modal>
