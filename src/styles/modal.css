@@ -1,0 +1,33 @@
+.Modal {
+  @apply fixed top-[25%] bg-gray-100 border shadow-lg py-3 px-5
+  w-3/4 md:w-2/4 lg:w-2/5 rounded-md max-h-[50%] z-40 /* overflow-y-scroll overflow-x-hidden */
+}
+
+
+.Modal .ModalHeader{
+  @apply flex font-medium text-lg justify-between select-none
+}
+.Modal .CloseModal{
+  @apply text-cinza-100 hover:text-cinza-300 cursor-pointer transition-all
+}
+.Modal .ModalHeader span{
+  @apply text-cinza-100 font-light
+}
+
+
+.Modal .ModalContent{
+  @apply py-2 text-cinza-100 h-full w-full
+}
+.ModalBar{
+  @apply mx-2
+}
+
+
+.Modal .ModalFooter{
+  @apply flex justify-end gap-3 pt-3
+}
+
+
+.Overlay {
+  @apply fixed top-0 left-0 right-0 bottom-0 bg-black/60 flex justify-center backdrop-blur-sm
+}

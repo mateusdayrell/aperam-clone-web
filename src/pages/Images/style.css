@@ -1,0 +1,11 @@
+.dropzone {
+  @apply cursor-pointer border-2 border-gray-400 border-dashed rounded-md
+}
+
+.active {
+  @apply border-teal-400
+}
+
+.reject {
+  @apply border-rose-400
+}

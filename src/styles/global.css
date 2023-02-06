@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+/*@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@400;500;900&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+  @apply m-0 p-0 outline-0 box-border;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+footer {
+  @apply mt-auto text-center bg-transparent z-0 opacity-80 h-12 pt-4 pb-8 border-t w-full border-cinza-300 text-gray-50 text-sm
+}
+
+a {
+  @apply no-underline;
+}
+
+ul {
+  @apply list-none;
+}
+
+label {
+  @apply block text-sm
+}
+
+input {
+  @apply border border-gray-300 px-2 py-1 rounded-md
+}
+
+.app-container {
+  @apply mt-[15vh] px-14 py-6 lg:ml-44
+}
+
+.box-container {
+  @apply px-6 py-4 border shadow-lg rounded-lg
+}
+
+.purple-btn {
+  @apply bg-roxo-100 text-gray-100 font-light rounded-md py-2 hover:bg-laranja-100 duration-300
+}
+
+.line {
+  @apply w-full h-0.5 mx-auto my-4 bg-gray-300 border-0 rounded
+}
+
+.title {
+  @apply font-extrabold text-lg
+}
