@@ -34,6 +34,8 @@ export default function Navbar() {
   window.addEventListener('resize', () => {
     if (window.screen.width > 767) {
       setShowMenu(true);
+    } else {
+      setShowMenu(false);
     }
   });
 

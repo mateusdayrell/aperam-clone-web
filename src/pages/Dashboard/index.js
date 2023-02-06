@@ -285,7 +285,7 @@ export default function Dashboard() {
                 </TableBody>
               </Table>
               <TablePagination
-                rowsPerPageOptions={[2, 5, 10, 25]}
+                rowsPerPageOptions={[5, 10, 25]}
                 component="div"
                 count={images.length}
                 rowsPerPage={rowsPerPage}
@@ -295,23 +295,6 @@ export default function Dashboard() {
               />
             </TableContainer>
           </div>
-          {/* <Modal
-            isOpen={showUpdate}
-            onRequestClose={() => setShowUpdate(false)}
-            className="Modal"
-            overlayClassName="Overlay"
-            ariaHideApp={false}
-          >
-            <div className="m-container">
-              <h1>Editar nome do arquivo</h1>
-              <label>Nome</label>
-              <input type="text" onChange={(e) => setName(e.target.value)} value={name} />
-              <div>
-                <button type="button" onClick={handleUpdate}>Atualizar</button>
-                <button type="button" onClick={() => setShowUpdate(false)}>Não, cancelar.</button>
-              </div>
-            </div>
-          </Modal> */}
 
           <Modal
             isOpen={showUpdate}

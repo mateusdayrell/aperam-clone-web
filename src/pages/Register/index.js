@@ -76,11 +76,11 @@ export default function Register(props) {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen flex">
       <img
         src={bgLogin}
         alt="Floresta"
-        className="hidden lg:block"
+        className="hidden lg:block opacity-75"
       />
 
       {/* RIGTH */}
@@ -105,27 +105,24 @@ export default function Register(props) {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <label>E-mail</label>
+            <label className="my-2">E-mail</label>
             <input
-              className="mt-2"
               type="email"
               name="email"
               placeholder="Digite seu e-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label className="pt-4">Senha</label>
+            <label className="my-2">Senha</label>
             <input
-              className="mt-2"
               type="password"
               name="password"
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <label className="pt-4">Confirme sua senha</label>
+            <label className="my-2">Confirme sua senha</label>
             <input
-              className="mt-2"
               type="password"
               name="confirm-password"
               placeholder="********"

@@ -38,11 +38,12 @@ export default function Login(props) {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen flex">
+
       <img
         src={bgLogin}
         alt="Floresta"
-        className="hidden lg:block"
+        className="hidden lg:block opacity-75"
       />
 
       {/* RIGTH */}

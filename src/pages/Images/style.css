@@ -1,5 +1,5 @@
 .dropzone {
-  @apply cursor-pointer border-2 border-gray-400 border-dashed rounded-md
+  @apply cursor-pointer border-2 border-gray-400 border-dashed rounded-md py-8 px-2 flex flex-col justify-center items-center
 }
 
 .active {

@@ -3,7 +3,7 @@
 }
 
 .lgList {
-  @apply bg-roxo-100 lg:bg-yellow-300 sm:bg-red-500 mt-0 w-28 text-gray-100 h-[85vh] inline-block fixed top-[15vh] z-10
+  @apply bg-roxo-100 mt-0 w-28 text-gray-100 h-[85vh] inline-block fixed top-[15vh] z-10
 }
 
 .link {
@@ -11,5 +11,5 @@
 }
 
 .link-container {
-  @apply w-5/6 border-x border-y sm:hover:text-roxo-100 sm:hover:font-bold border-gray-600 text-center rounded-full py-2 lg:border-none md:hover:bg-laranja-100 duration-300 md:rounded-none md:w-full md:px-4 md:py-6
+  @apply w-5/6 border-x border-y md:hover:text-gray-100 md:hover:font-normal hover:text-roxo-100 sm:hover:font-bold border-gray-600 text-center rounded-full py-2 md:border-none md:hover:bg-laranja-100 duration-300 md:rounded-none md:w-full md:px-4 md:py-6
 }

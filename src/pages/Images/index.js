@@ -7,8 +7,9 @@ import Dropzone from 'react-dropzone';
 import Modal from 'react-modal';
 import { ImageList, ImageListItem } from '@mui/material';
 import { filesize } from 'filesize';
-import { BsCardImage, BsPlusCircle } from 'react-icons/bs';
+import { BsCardImage, BsPlusCircle, BsCloudUpload } from 'react-icons/bs';
 
+import moment from 'moment/moment';
 import Navbar from '../../components/Navbar';
 import axios from '../../services/axios';
 import './style.css';
@@ -17,23 +18,16 @@ export default function Images() {
   const [images, setImages] = useState([]);
   const [uploads, setUploads] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [date, setDate] = useState(false);
 
-  const handleClose = () => setShowModal(false);
+  const handleClose = () => {
+    setShowModal(false);
+    setUploads([]);
+  };
 
   useEffect(() => {
-    loadRegisters();
+    handleSearch(moment().format('YYYY-MM-DD'));
   }, []);
-
-  const loadRegisters = async () => {
-    try {
-      const { data } = await axios.get('/images');
-
-      setImages(data.images);
-    } catch (error) {
-      const erros = get(error, 'response.data.errors', []);
-      erros.map((err) => toast.error(err));
-    }
-  };
 
   const handleUploads = (files) => {
     const uploadedFiles = files.map((file) => ({
@@ -67,18 +61,21 @@ export default function Images() {
       try {
         // eslint-disable-next-line no-await-in-loop
         await axios.post('/images', formData, header);
-        toast.error('Upload realizado com sucesso');
+        toast.success('Upload realizado com sucesso');
+        handleClose();
       } catch (error) {
         const erros = get(error, 'response.data.errors', []);
         erros.map((err) => toast.error(err));
       }
     }
+    await handleSearch(moment().format('YYYY-MM-DD'));
   };
 
   const handleSearch = async (value) => {
     const querys = new URLSearchParams({
       date: value,
     }).toString();
+    setDate(value);
     try {
       const { data } = await axios.get(`/images/search/${querys}`);
       setImages(data);
@@ -110,17 +107,22 @@ export default function Images() {
           </div>
 
           <div className="box-container">
+            <label>Data</label>
             <input
               type="date"
               name="date"
+              value={date}
               onChange={(e) => handleSearch(e.target.value)}
-              className="w-full"
+              className="w-full mb-6"
             />
             <ImageList variant="masonry" cols={3} gap={8}>
               {images?.map((image) => (
                 <ImageListItem key={image.id}>
-                  <span>{image.id}</span>
-                  <img src={image.file_url} alt="" loading="lazy" />
+                  <a href={image.file_url} className="flex items-center text-center" target="_blank" title="Acessar" rel="noreferrer">
+                    <span className="w-full bg-gray-50 opacity-0 hover:opacity-50 h-full absolute flex items-center justify-center duration-300">{image.originalname}</span>
+                    <img src={image.file_url} alt="" loading="lazy" />
+                  </a>
+
                 </ImageListItem>
               ))}
             </ImageList>
@@ -131,11 +133,13 @@ export default function Images() {
       <Modal
         isOpen={showModal}
         onRequestClose={handleClose}
-        className="Modal"
+        className="fixed top-[20%] bg-gray-100 border shadow-lg py-3 px-5
+        w-3/4 md:w-3/4 lg:w-2/5 rounded-md max-h-[60%] z-40 overflow-y-scroll overflow-x-hidden"
         overlayClassName="Overlay"
         ariaHideApp={false}
       >
-        <div>
+        <div className="flex flex-col items-center">
+          <h1 className="title mb-4 mt-2 mr-auto">Cadastrar foto</h1>
           <Dropzone onDropAccepted={handleUploads}>
             {({
               getRootProps, getInputProps, isDragActive, isDragReject,
@@ -148,29 +152,46 @@ export default function Images() {
               >
                 <input {...getInputProps()} />
                 Arraste arquivos para dentro da área pontilhada para fazer o upload.
+                <span className="bg-gray-300 w-48 rounded-lg py-1 mt-2 text-center hover:bg-gray-400">Selecionar arquivos</span>
               </div>
             )}
           </Dropzone>
-          <button type="button" onClick={handleUpload}>Upload</button>
           {!!uploads.length
            && (
-           <ul className="mt-10">
+           <ul className="mt-10 flex flex-wrap gap-3 items-center justify-center">
              {uploads.map((file) => (
-               <li key={file.id} className="flex justify-between items-center my-2">
-                 <img src={file.preview} alt="" />
-                 <div className="file-info flex items-center">
+               <li key={file.id} className="flex flex-col justify-between items-center my-2">
+                 <img src={file.preview} className="h-32" alt="" />
+                 <span>
                    <strong>{file.name}</strong>
-                   <span>
-                     {file.readableSize}
-                     {' '}
-                     <button type="button">Excluir</button>
-                   </span>
-                 </div>
+                   {' '}
+                   -
+                   {' '}
+                   {file.readableSize}
+                 </span>
                </li>
              ))}
 
            </ul>
            )}
+          <div className="flex mt-5 ml-auto">
+            <button
+              type="button"
+              className="confirm-btn flex w-32 gap-2 items-center ml-auto"
+              onClick={handleUpload}
+            >
+              <BsCloudUpload size={24} />
+              Upload
+            </button>
+            <button
+              type="button"
+              className="reject-btn w-32"
+              onClick={handleClose}
+            >
+              Cancelar
+            </button>
+          </div>
+
         </div>
       </Modal>
     </>
