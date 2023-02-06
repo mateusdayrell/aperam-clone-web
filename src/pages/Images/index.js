@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import { ImageList, ImageListItem } from '@mui/material';
 import { filesize } from 'filesize';
 import { BsCardImage, BsPlusCircle, BsCloudUpload } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
 
 import moment from 'moment/moment';
 import Navbar from '../../components/Navbar';
@@ -25,6 +26,8 @@ export default function Images() {
     setUploads([]);
   };
 
+  const { user } = useSelector((state) => state.auth);
+
   useEffect(() => {
     handleSearch(moment().format('YYYY-MM-DD'));
   }, []);
@@ -40,7 +43,7 @@ export default function Images() {
       uploaded: false,
       error: false,
       url: null,
-      user_id: 1,
+      user_id: user.id,
     }));
 
     setUploads(uploads.concat(uploadedFiles));
@@ -56,7 +59,7 @@ export default function Images() {
     for (const upload of uploads) {
       const formData = new FormData();
       formData.append('file', upload.file);
-      formData.append('user_id', 1);
+      formData.append('user_id', user.id);
 
       try {
         // eslint-disable-next-line no-await-in-loop
